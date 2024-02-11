@@ -15,7 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@single-use-downloads/models-users": ["libs/models/users/src/index.ts"]
+      "@single-use-downloads/backend-controller-users": [
+        "libs/backend/controller/users/src/index.ts"
+      ],
+      "@single-use-downloads/backend-model-users": [
+        "libs/backend/model/users/src/index.ts"
+      ],
+      "@single-use-downloads/backend-service-users": [
+        "libs/backend/service/users/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

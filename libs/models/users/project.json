@@ -1,8 +1,0 @@
-{
-  "name": "models-users",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/models/users/src",
-  "projectType": "library",
-  "targets": {},
-  "tags": []
-}
