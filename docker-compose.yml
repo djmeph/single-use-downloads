@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   dev:
-    build: .
+    build: .devcontainer
     command: sh -c "tail -f /dev/null"
     working_dir: /src
     volumes:
@@ -10,4 +10,5 @@ services:
       - /src/dist
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - 4400:4200
+      - '127.0.0.1:4200:4200'
+    network_mode: host

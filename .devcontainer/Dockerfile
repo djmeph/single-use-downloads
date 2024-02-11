@@ -19,4 +19,4 @@ RUN install -m 0755 -d /etc/apt/keyrings && \
   apt-get update && \
   apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-COPY .devcontainer/.bashrc .devcontainer/.profile .devcontainer/.git-completion .devcontainer/.yarnrc.yml /root/
+COPY .bashrc .profile .git-completion .yarnrc.yml /root/
