@@ -10,7 +10,7 @@ services:
       - /src/dist
       - /root/.yarn/berry/cache
       - /var/run/docker.sock:/var/run/docker.sock
-      - ~/.ssh:/root/ssh
+      - ~/.ssh:/root/.ssh
     ports:
       - '127.0.0.1:4200:4200'
     network_mode: host
