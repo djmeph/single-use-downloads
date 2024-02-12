@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { UsersControllerModule } from '@single-use-downloads/backend-controller-users';
 import { ConfigModule } from '@nestjs/config';
+import { UsersControllerModule } from '@single-use-downloads/backend-controller-users';
 
 @Module({
-  imports: [UsersControllerModule, ConfigModule.forRoot()],
+  imports: [UsersControllerModule],
   controllers: [],
   providers: [],
 })
