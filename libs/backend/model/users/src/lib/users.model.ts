@@ -5,7 +5,7 @@ import {
   PutCommand,
   PutCommandOutput,
 } from '@aws-sdk/lib-dynamodb';
-import { UserItem } from './users.interface';
+import { UserItem } from '@single-use-downloads/type-users';
 const dynamodbClient = new DynamoDBClient({});
 
 @Injectable()

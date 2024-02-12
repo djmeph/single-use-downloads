@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { UsersModel } from '@single-use-downloads/backend-model-users';
-import { User } from './users.interface';
 import * as crypto from 'crypto';
 import { promisify } from 'util';
 

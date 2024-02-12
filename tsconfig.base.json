@@ -23,7 +23,8 @@
       ],
       "@single-use-downloads/backend-service-users": [
         "libs/backend/service/users/src/index.ts"
-      ]
+      ],
+      "@single-use-downloads/type-users": ["libs/types/users/src/index.ts"]
     },
     "strictPropertyInitialization": false
   },
