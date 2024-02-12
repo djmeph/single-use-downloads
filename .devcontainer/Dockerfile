@@ -3,7 +3,7 @@ WORKDIR /src
 ENV DEBIAN_FRONTEND="noninteractive"
 
 RUN apt-get update && apt-get install -y build-essential curl vim nano git git-lfs unzip zip ca-certificates
-RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get install -y nodejs
 RUN npm i -g yarn node-gyp
 

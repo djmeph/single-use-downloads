@@ -10,6 +10,8 @@ export enum UserItemKeys {
 }
 export interface UserItem extends User {
   itemKey: string;
+  lockUntil?: string;
+  loginAttempts?: number;
 }
 
 import {

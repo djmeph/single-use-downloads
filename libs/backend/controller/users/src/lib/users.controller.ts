@@ -7,7 +7,6 @@ import {
 } from '@nestjs/common';
 import { UsersService } from '@single-use-downloads/backend-service-users';
 import { LoginInputDto, UserInputDto } from '@single-use-downloads/type-users';
-import { serialize } from 'v8';
 
 @Controller('users')
 export class UsersController {
