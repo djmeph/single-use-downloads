@@ -1,6 +1,13 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Post,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { UsersService } from '@single-use-downloads/backend-service-users';
-import { UserInputDto } from '@single-use-downloads/type-users';
+import { LoginInputDto, UserInputDto } from '@single-use-downloads/type-users';
+import { serialize } from 'v8';
 
 @Controller('users')
 export class UsersController {
@@ -8,6 +15,24 @@ export class UsersController {
 
   @Post('create')
   async create(@Body() body: UserInputDto) {
-    await this.usersService.createUser(body.email, body.password);
+    try {
+      const user = await this.usersService.createUser(
+        body.email,
+        body.password
+      );
+      return user;
+    } catch (err) {
+      throw new BadRequestException(err);
+    }
+  }
+
+  @Post('login')
+  async login(@Body() body: LoginInputDto) {
+    try {
+      const user = await this.usersService.login(body.email, body.password);
+      return user;
+    } catch (err: any) {
+      throw new UnauthorizedException(err.message);
+    }
   }
 }
