@@ -4,14 +4,19 @@ import {
   Controller,
   Post,
   UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
-import { UsersService } from '@single-use-downloads/backend-service-users';
+import {
+  AuthGuard,
+  UsersService,
+} from '@single-use-downloads/backend-service-users';
 import { LoginInputDto, UserInputDto } from '@single-use-downloads/type-users';
 
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
+  @UseGuards(AuthGuard)
   @Post('create')
   async create(@Body() body: UserInputDto) {
     try {

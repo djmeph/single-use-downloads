@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { UsersModel } from '@single-use-downloads/backend-model-users';
 import { UserItem } from '@single-use-downloads/type-users';
 import * as crypto from 'crypto';
@@ -10,8 +11,9 @@ const pbkdf2 = promisify(crypto.pbkdf2);
 export class UsersService {
   private maxLoginAttempts = 10;
   private lockTime = 60 * 1; // 1 minute lockout
+  private jwtExpiry = 60 * 60 * 24 * 30; // 30 Day expiry
 
-  constructor(private usersModel: UsersModel) {}
+  constructor(private usersModel: UsersModel, private jwtService: JwtService) {}
 
   public async createUser(email: string, password: string) {
     const passwordHash = await this.hashPassword(password);
@@ -24,7 +26,10 @@ export class UsersService {
     return response;
   }
 
-  public async login(email: string, password: string): Promise<UserItem> {
+  public async login(
+    email: string,
+    password: string
+  ): Promise<{ email: string; token: string }> {
     const user = await this.usersModel.getOneByEmail(email);
     if (!user) {
       throw Error('User not found');
@@ -44,7 +49,15 @@ export class UsersService {
 
     await this.resetLoginAttempts(user.email);
 
-    return user;
+    const token = await this.jwtService.signAsync(
+      { sub: user.email },
+      { expiresIn: this.jwtExpiry }
+    );
+
+    return {
+      token,
+      email: user.email,
+    };
   }
 
   private async hashPassword(
